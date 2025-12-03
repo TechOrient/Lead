@@ -1,0 +1,100 @@
+NOTLAR VE OLUŞTURULACAK OLAN BİLGİLER 
+
+BAŞTA YAPILACAKLAR : 
+1. Sistemin verdiği konum linkleri açılmıyor (Dynamic Link Not Found Hatası veriyor)
+2. Excel Dökümanı olarak çıktıyı vermesi gerekli ya da opsiyonel olarak excel dosyası eklentisi yapılması gerekli 
+3. Çalışma Süresi daha kısa olabilir. Çok uzun sürüyor ancak çok ta sorun değil 
+
+
+
+Bu proje, satış temsilcilerin girmiş kriterler üzerinden, kriterlere uygun olan
+firmaların internet search ile gerekli olan bilgilerinin araştırılmasını ve 
+bunu da kullanıcıya bir döküman olarak sunmasını sağlayan firma deep research projedir.
+
+--!!OpenAI'a şu promptu ver: Şirketimizin yapmış olduğu işleri tam ve net olarak anlatan ve bunun devamında firmaların 
+Şirketimize uygun olup olmadığının bilgisi verilecektir.
+
+--Kullanıcı tarafından tamamlanacak prompt : 
+
+Bana	{  }	şehrindeki	{ } 	İlçesindeki  	{  } 	sektöründe faaliyet gösteren ve ithalat ihracat yapan firmaları getir.	Mağaza olmasın.	Aynı zamanda adres bilgisi, kuruluş tarihi bilgilerini de ver.
+
+Tüm adımlar
+1. Kullanıcıdan gerekli olan promptun girilmesi
+2. Kullanıcıya sistem tarafından brief verilmesi 
+3. Bu brief doğrultusunda gerekli araştırmanın başlatılması 
+4. Araştırılacak olan bilgiler.
+    1. Şirket tam ad 
+    2. Tam adres 
+    3. Gerekli telefon numaraları 
+    4. Çalışan kişi ve bilgiler /özellikle linkedin bilgisi
+    5. Şirketin bulunduğu sektör
+    6. Kuruluş yılı + kurucuların bilgisi
+    7. Fabrikası ya da farklı bir üretim yerine sahip olduğunun bilgisi veya tesis bilgisi.
+    8. Son olarak detaylı olacak olan rapor.
+    9. Ekstra olarak sabit olan sitelerden belli başlı bilgileri getirmesi için araştırma yapacak
+-------
+
+-- Bu sırada kullanıcıya gerekli bilgiler araştırılıyor ekranı gelecek 
+-- Her agent görevi bitince kullanıcıya tikli ibare döndürsün 
+-- Sonda da rapor çıksın
+
+
+API BAĞLANTISI VE RAPOR :  !!Sonra yapılacak!!
+EKSTRA OLARAK 
+SONRA YAPILACAK İŞ 
+
+Eğer kullanıcı bu dataları beğenir ve iş görür olursa bunu bir pdf / ya da excel olarak kayıt edebilir.
+
+-- Bakabilecek siteler listesi--
+
+Vergi Numarası – E-ft mükellefiyse Özel entegratör (www.edmbilisim.com.tr)
+Şirket Ortakları – ticaret sicil gazetesi (www.ticaretsicil.gov.tr)
+Yönetim Kurulu – ticaret sicil gazetesi (www.ticaretsicil.gov.tr)
+Sermayesi – ticaret sicil gazetesi (www.ticaretsicil.gov.tr)
+Kuruluş Yılı – ticaret sicil gazetesi (www.ticaretsicil.gov.tr)
+Bulunabilirse Ticaret odasındaki kayıtları  – ticaret sicil gazetesi (www.ticaretsicil.gov.tr)
+
+TÜM AGENT VE GEREKLİ AGENT MİMARİLERİ  :
+
+1. Kullanıcı : Gerekli promptu giren ve de sonucu görecek olan kişi 
+2. Supervisor Agent : Tüm agent'ların işlemlerini ve süreçlerini kontrol etme görevi
+3. Prompt Parser Agent : Girilen promptu işleyen ve eksik bilgi var mı + brief olarak döndüren Agent
+4. Web Search Agent : İnternet sitelerine bakan ve google search yapacak siteleri bulacak. 
+5. Extract Agent : Sitelerden detaylı bilgileri bulacak olan agent 
+6. Valide/Clean Up Agent : Tüm sonuçları inceleyen sonunda ise şirketimize uygun mu değil mi bunun kararını veren agent 
+7. Rapor Agent: Bilgileri döküman haline getiren agent (son agent)
+
+
+TEKNİK NOTLAR  
+1 . SerpAPI ve gpt 4o search-preview modelini kullan
+2 . Genel düzenlemeleri temiz tut + promptları tam oturtarak yap
+3 . Girilecek promptta kullanıcı sadece belli değerleri seçerek yapsın
+
+
+MALİYETLER : 
+
+1. Tavily API Key : Ort: Aylık $30
+2. OpenAI API Key : Ort: Aylık $30
+3. Server Maliyeti : Ort: ? 
+4. Langsmith Maliyeti : Ort: ?
+
+
+LinkedIn BAĞLANTISI Yapılabilir mi ? 
+
+
+Proje Devamında yapılacaklar 
+1. Müşteriye giderek gerekli olan mail adresinden bir mail atacaktır. 
+2. Kullanıcya linkedin'den yazabilir 
+
+
+-------------------------------------------
+
+
+- Promptlar Düzenlenecek ve tam olarak oturtulacak
+- Araştırma yapacak olan bir tool eklenecek 
+- LinkedIn API bağlantısı testi yapılacak 
+- Arayüz işlemleri Langsmith'ten çıkacak ve de bir arayüz yapılacak
+- Ana main prompt düzeltilecek ve kullanıcının sadece gerekli olan değerleri girilmesi sağlanacak 
+ ÖRNEK : 
+
+Bana {  } şehrindeki { } İlçesindeki  {  } sektöründe faaliyet gösteren ve ithalat ihracat yapan firmaları getir.	Mağaza olmasın.	Aynı zamanda adres bilgisi, kuruluş tarihi bilgilerini de ver.
