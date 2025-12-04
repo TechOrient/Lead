@@ -2,13 +2,12 @@
 name = "open_deep_research"
 version = "0.0.16"
 description = "Planning, research, and report generation."
-package-mode = false
 authors = [
     { name = "Furkan" }
 ]
 readme = "README.md"
 license = { text = "MIT" }
-requires-python = ">=3.10,<3.11"  
+requires-python = ">=3.10,<3.11"
 dependencies = [
     "langgraph>=0.5.4",
     "langchain-community>=0.3.9",
@@ -16,7 +15,7 @@ dependencies = [
     "langchain-anthropic>=0.3.15",
     "langchain-mcp-adapters>=0.1.6",
     "langchain-deepseek>=0.1.2",
-    "langchain-tavily == 0.2.7",
+    "langchain-tavily==0.2.7",
     "langchain-groq>=0.2.4",
     "openai>=1.99.2",
     "tavily-python>=0.5.0",
@@ -45,7 +44,6 @@ dependencies = [
     "mcp>=1.9.4",
     "langchain-aws>=0.2.28",
     "pandas>=2.3.1",
-    "requests >=2.32.3",
     "google-search-results>=2.4.2",
     "streamlit>=1.47.0"
 ]
@@ -58,30 +56,20 @@ requires = ["setuptools>=73.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["open_deep_research"]
+# src dizininde proje var, ona göre ayarla
+package-dir = { "" = "deep_research/src" }
 
-[tool.setuptools.package-dir]
-"open_deep_research" = "deep_research/src/open_deep_research"
+packages = ["open_deep_research"]
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]
 
 [tool.ruff]
 lint.select = [
-    "E",    # pycodestyle
-    "F",    # pyflakes
-    "I",    # isort
-    "D",    # pydocstyle
-    "D401", # First line should be in imperative mood
-    "T201",
-    "UP",
+    "E", "F", "I", "D", "D401", "T201", "UP"
 ]
 lint.ignore = [
-    "UP006",
-    "UP007",
-    "UP035",
-    "D417",
-    "E501",
+    "UP006", "UP007", "UP035", "D417", "E501"
 ]
 
 [tool.ruff.lint.per-file-ignores]
